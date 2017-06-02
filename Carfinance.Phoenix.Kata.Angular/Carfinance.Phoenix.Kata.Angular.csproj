@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B974F9B4-63BC-449C-9B0D-923412BB89E6}</ProjectGuid>
+    <ProjectGuid>{D1287A19-44B0-4E77-915B-D35F57E9B35B}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Carfinance.Phoenix.Kata</RootNamespace>
-    <AssemblyName>Carfinance.Phoenix.Kata</AssemblyName>
+    <RootNamespace>Carfinance.Phoenix.Kata.Angular</RootNamespace>
+    <AssemblyName>Carfinance.Phoenix.Kata.Angular</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -157,7 +157,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,7 +188,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52363</DevelopmentServerPort>
+          <DevelopmentServerPort>54372</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:52363/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace Carfinance.Phoenix.Kata.Controllers
+namespace Carfinance.Phoenix.Kata.Empty.Controllers
 {
     [Route("")]
     public class AliveController : ApiController

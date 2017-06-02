@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Carfinance.Phoenix.Kata")]
+[assembly: AssemblyTitle("Carfinance.Phoenix.Kata.Empty")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Carfinance.Phoenix.Kata")]
+[assembly: AssemblyProduct("Carfinance.Phoenix.Kata.Empty")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3130a64c-c268-43af-953e-18d238c6cc05")]
+[assembly: Guid("f03ac0cd-4474-4424-abca-133de3e2a06e")]
 
 // Version information for an assembly consists of the following four values:
 //
