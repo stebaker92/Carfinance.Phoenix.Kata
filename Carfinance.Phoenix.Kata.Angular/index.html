@@ -9,8 +9,13 @@
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/angular-route.min.js"></script>
     <script src="app/module.js"></script>
+    <script src="app/bookings/bookings-controller.js"></script>
+    <script src="app/bookings/bookings-service.js"></script>
+    <script src="app/bookings/booking-detail/booking-detail-controller.js"></script>
 </head>
-<body>
-    Start building...
+<body ng-app="PhoenixKata">
+    <div class="container-fluid">
+        <ng-view></ng-view>
+    </div>
 </body>
 </html>

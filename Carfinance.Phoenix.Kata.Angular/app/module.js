@@ -1,10 +1,23 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('PhoenixKata', [
+    angular.module('PhoenixKata', ['ngRoute'])
+        .config([
+            '$routeProvider', function ($routeProvider) {
 
-        // Angular modules
-        'ngRoute'
+                $routeProvider
+                    .when('/', {
+                        templateUrl: '/app/bookings/bookings.html',
+                        controller: 'BookingsController',
+                        controllerAs: 'vm'
+                    })
+
+                    .when('/edit/:bookingId', {
+                        templateUrl: '/app/bookings/booking-detail/booking-detail.html',
+                        controller: 'BookingDetailController',
+                        controllerAs: 'vm'
+                    })
+        }
     ]);
 
 })();
