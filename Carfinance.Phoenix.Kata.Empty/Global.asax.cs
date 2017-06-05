@@ -9,6 +9,11 @@ namespace Carfinance.Phoenix.Kata.Empty
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            GlobalConfiguration.Configuration.Formatters
+            .JsonFormatter
+            .SerializerSettings
+            .ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }

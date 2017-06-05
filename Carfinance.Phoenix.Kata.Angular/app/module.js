@@ -12,7 +12,7 @@
                         controllerAs: 'vm'
                     })
 
-                    .when('/edit/:bookingId', {
+                    .when('/booking/:bookingId?', {
                         templateUrl: '/app/bookings/booking-detail/booking-detail.html',
                         controller: 'BookingDetailController',
                         controllerAs: 'vm'

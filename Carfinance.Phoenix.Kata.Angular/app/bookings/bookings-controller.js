@@ -8,11 +8,8 @@
     function BookingsController($location, bookingsService) {
         var vm = this;
 
-        vm.bookingClick = bookingClick;
-
-        function bookingClick(bookingId) {
-            $location.path('edit/' + bookingId);
-        }
+        vm.createBooking = bookingsService.navigateToCreateBooking;
+        vm.editBooking = bookingsService.navigateToEditBooking;
 
         function init() {
             bookingsService.getBookings().then(function (response) {

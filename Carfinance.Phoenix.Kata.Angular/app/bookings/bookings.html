@@ -1,22 +1,36 @@
-﻿<table class="table table-striped">
-    <thead>
-        <tr>
-            <td><b>Table Number</b></td>
-            <td><b>Contact Name</b></td>
-            <td><b>Contact Number</b></td>
-            <td><b>No of Diners</b></td>
-            <td><b>Booking Time</b></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="booking in vm.bookings | orderBy: 'BookingTime'" 
-            ng-class="{'text-danger' : booking.NumberOfPeople > 6}"
-            ng-click="vm.bookingClick(booking.BookingId)">
-            <td>{{booking.TableNumber}}</td>
-            <td>{{booking.ContactName}}</td>
-            <td>{{booking.ContactNumber}}</td>
-            <td>{{booking.NumberOfPeople}}</td>
-            <td>{{booking.BookingTime | date: 'dd/MM/yyyy HH:mm'}}</td>
-        </tr>
-    </tbody>
-</table>
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-primary" ng-click="vm.createBooking()">Add</button>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td><b>Table Number</b></td>
+                            <td><b>Contact Name</b></td>
+                            <td><b>Contact Number</b></td>
+                            <td><b>No of Diners</b></td>
+                            <td><b>Booking Time</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="booking in vm.bookings | orderBy: 'BookingTime'"
+                            ng-class="{'text-danger' : booking.numberOfPeople > 6}"
+                            ng-click="vm.editBooking(booking.bookingId)">
+
+                            <td>{{booking.tableNumber}}</td>
+                            <td>{{booking.contactName}}</td>
+                            <td>{{booking.contactNumber}}</td>
+                            <td>{{booking.numberOfPeople}}</td>
+                            <td>{{booking.bookingTime | date: 'dd/MM/yyyy HH:mm'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>    
+</div>
