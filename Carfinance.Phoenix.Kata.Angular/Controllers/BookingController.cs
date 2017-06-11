@@ -1,4 +1,6 @@
 ﻿using Carfinance.Phoenix.Kata.Angular.Models;
+using Carfinance.Phoenix.Kata.Angular.Services;
+using Carfinance.Phoenix.Kata.Angular.Services.Interfaces;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -8,28 +10,33 @@ using System.Web.Http;
 
 namespace Carfinance.Phoenix.Kata.Angular.Controllers
 {
+    /// <summary>
+    /// Your Name:
+    /// Date: 
+    /// Random fact about you: 
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     [RoutePrefix("booking")]
     public class BookingController : ApiController
     {
-        private static List<Booking> bookings;
+        private readonly IBookingService bookingService;
 
         public BookingController()
         {
-            if (bookings == null)
-            {
-                bookings = new List<Booking>();
-                using (StreamReader r = new StreamReader(HttpContext.Current.Server.MapPath("~/json/bookings.json")))
-                {
-                    string json = r.ReadToEnd();
-                    bookings = JsonConvert.DeserializeObject<List<Booking>>(json);
-                }
-            }            
+            bookingService = new BookingService();
+        }
+
+        public BookingController(IBookingService bookingService)
+        {
+            this.bookingService = bookingService;
         }
 
         [HttpGet]
         [Route("")]        
         public IHttpActionResult Get()
         {
+            IEnumerable<Booking> bookings = bookingService.GetAllBookings();
+
             return Ok(bookings);
         }
 
@@ -37,9 +44,7 @@ namespace Carfinance.Phoenix.Kata.Angular.Controllers
         [Route("{bookingId}")]
         public IHttpActionResult Get([FromUri] int bookingId)
         {
-            Booking booking = bookings.FirstOrDefault(x => x.BookingId == bookingId);
-
-            if (booking == null) return NotFound();
+            Booking booking = bookingService.GetBookingById(bookingId);
 
             return Ok(booking);
         }
@@ -48,11 +53,7 @@ namespace Carfinance.Phoenix.Kata.Angular.Controllers
         [Route("")]
         public IHttpActionResult Post(Booking booking)
         {
-            if (booking == null) return BadRequest();
-            int highestBookingId = bookings.Max(b => b.BookingId);
-
-            booking.BookingId = highestBookingId + 1;
-            bookings.Add(booking);
+            bookingService.CreateBooking(booking);
 
             return Ok();
         }
@@ -61,17 +62,7 @@ namespace Carfinance.Phoenix.Kata.Angular.Controllers
         [Route("")]
         public IHttpActionResult Put(Booking booking)
         {
-            if (booking == null) return BadRequest();
-
-            Booking existingBooking = bookings.FirstOrDefault(b => b.BookingId == booking.BookingId);
-
-            if (existingBooking == null) return NotFound();
-
-            existingBooking.ContactName = booking.ContactName;
-            existingBooking.ContactNumber = booking.ContactNumber;
-            existingBooking.NumberOfPeople = booking.NumberOfPeople;
-            existingBooking.TableNumber = booking.TableNumber;
-            existingBooking.BookingTime = booking.BookingTime;
+            bookingService.UpdateBooking(booking);
 
             return Ok();
         }

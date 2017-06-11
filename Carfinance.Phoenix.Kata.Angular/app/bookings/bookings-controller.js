@@ -3,9 +3,9 @@
 
     angular.module('PhoenixKata').controller('BookingsController', BookingsController);
 
-    BookingsController.$inject = ['$location', 'bookingsService'];
+    BookingsController.$inject = ['bookingsService'];
 
-    function BookingsController($location, bookingsService) {
+    function BookingsController(bookingsService) {
         var vm = this;
 
         vm.createBooking = bookingsService.navigateToCreateBooking;

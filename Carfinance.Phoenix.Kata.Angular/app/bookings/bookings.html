@@ -15,6 +15,7 @@
                             <td><b>Contact Number</b></td>
                             <td><b>No of Diners</b></td>
                             <td><b>Booking Time</b></td>
+                            <td><b>Pay Bill/b></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +28,7 @@
                             <td>{{booking.contactNumber}}</td>
                             <td>{{booking.numberOfPeople}}</td>
                             <td>{{booking.bookingTime | date: 'dd/MM/yyyy HH:mm'}}</td>
+                            <td><button class="btn btn-success" ng-click="vm.payBill(booking)">Pay Bill</button></td>
                         </tr>
                     </tbody>
                 </table>
