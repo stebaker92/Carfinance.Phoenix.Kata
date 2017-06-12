@@ -32,6 +32,7 @@
                 vm.title = "Edit Booking";
                 bookingsService.getBooking($routeParams.bookingId).then(function (response) {
                     vm.booking = response.data;
+                    vm.booking.bookingTime = new Date(vm.booking.bookingTime);
                 }, function () {
                     console.error('Failed to get booking Id');
                 })

@@ -1,8 +1,8 @@
 ﻿<div class="row">
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-3">
-                <button class="btn btn-primary" ng-click="vm.createBooking()">Add</button>
+            <div class="col-md-12">
+                <button class="btn btn-primary" ng-click="vm.createBooking()" style="margin: 5px;">New Booking</button>
             </div>            
         </div>
         <div class="row">
@@ -10,25 +10,22 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <td><b>Table Number</b></td>
                             <td><b>Contact Name</b></td>
                             <td><b>Contact Number</b></td>
                             <td><b>No of Diners</b></td>
+                            <td><b>Table Number</b></td>
                             <td><b>Booking Time</b></td>
-                            <td><b>Pay Bill/b></td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr ng-repeat="booking in vm.bookings | orderBy: 'BookingTime'"
-                            ng-class="{'text-danger' : booking.numberOfPeople > 6}"
+                    <tbody> 
+                        <tr ng-repeat="booking in vm.bookings | orderBy: 'bookingTime'"
+                            ng-class="{'text-danger' : booking.numberOfPeople > 6, 'text-primary': booking.numberOfPeople == 1}"
                             ng-click="vm.editBooking(booking.bookingId)">
-
-                            <td>{{booking.tableNumber}}</td>
                             <td>{{booking.contactName}}</td>
                             <td>{{booking.contactNumber}}</td>
                             <td>{{booking.numberOfPeople}}</td>
+                            <td>{{booking.tableNumber}}</td>
                             <td>{{booking.bookingTime | date: 'dd/MM/yyyy HH:mm'}}</td>
-                            <td><button class="btn btn-success" ng-click="vm.payBill(booking)">Pay Bill</button></td>
                         </tr>
                     </tbody>
                 </table>

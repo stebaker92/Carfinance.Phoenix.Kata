@@ -1,5 +1,6 @@
 ﻿using Carfinance.Phoenix.Kata.Angular.Models;
 using Carfinance.Phoenix.Kata.Angular.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,12 +8,10 @@ namespace Carfinance.Phoenix.Kata.Angular.Services
 {
     public class BookingService : IBookingService
     {
-        private static List<Booking> bookings;
+        private static IList<Booking> bookings;
 
-        public BookingService()
+        public BookingService() : this(new DataService())
         {
-            IDataService dataService = new DataService();
-            bookings = dataService.Initialize();
         }
 
         public BookingService(IDataService dataService)
@@ -20,7 +19,7 @@ namespace Carfinance.Phoenix.Kata.Angular.Services
             bookings = dataService.Initialize();
         }
 
-        public IEnumerable<Booking> GetAllBookings()
+        public IList<Booking> GetAllBookings()
         {
             return bookings;
         }
@@ -33,23 +32,20 @@ namespace Carfinance.Phoenix.Kata.Angular.Services
 
         public void CreateBooking(Booking booking)
         {
-            //if (booking == null) 
-
-            int highestBookingId = bookings.Max(b => b.BookingId);
-            booking.BookingId = highestBookingId + 1;
+            if (booking == null) throw new ArgumentNullException("Booking is null");
+            if (booking.TableNumber < 1 || booking.TableNumber > 4) throw new ArgumentOutOfRangeException("TableNumber", $"Table number {booking.TableNumber} does not exist");
+            booking.BookingId = bookings.Max(b => b.BookingId) + 1;
             bookings.Add(booking);
         }
 
         public void UpdateBooking(Booking booking)
         {
-            Booking existingBooking = bookings.FirstOrDefault(b => b.BookingId == booking.BookingId);     
+            Booking existingBooking = bookings.FirstOrDefault(b => b.BookingId == booking.BookingId);
             existingBooking.ContactName = booking.ContactName;
             existingBooking.ContactNumber = booking.ContactNumber;
             existingBooking.NumberOfPeople = booking.NumberOfPeople;
             existingBooking.TableNumber = booking.TableNumber;
             existingBooking.BookingTime = booking.BookingTime;
         }
-
-
     }
 }

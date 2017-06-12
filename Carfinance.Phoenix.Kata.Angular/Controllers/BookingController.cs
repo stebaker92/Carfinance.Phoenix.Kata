@@ -21,9 +21,8 @@ namespace Carfinance.Phoenix.Kata.Angular.Controllers
     {
         private readonly IBookingService bookingService;
 
-        public BookingController()
+        public BookingController() : this (new BookingService())
         {
-            bookingService = new BookingService();
         }
 
         public BookingController(IBookingService bookingService)

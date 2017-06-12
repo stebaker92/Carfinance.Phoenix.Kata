@@ -6,7 +6,7 @@
     BookingsController.$inject = ['bookingsService'];
 
     function BookingsController(bookingsService) {
-        var vm = this;
+        var vm = this;        
 
         vm.createBooking = bookingsService.navigateToCreateBooking;
         vm.editBooking = bookingsService.navigateToEditBooking;

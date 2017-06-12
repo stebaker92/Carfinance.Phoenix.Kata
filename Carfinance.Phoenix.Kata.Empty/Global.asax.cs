@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using Newtonsoft.Json.Serialization;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Carfinance.Phoenix.Kata.Empty

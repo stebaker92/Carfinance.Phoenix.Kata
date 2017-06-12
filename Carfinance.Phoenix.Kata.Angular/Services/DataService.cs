@@ -25,15 +25,19 @@ namespace Carfinance.Phoenix.Kata.Angular.Services
     /// <seealso cref="Carfinance.Phoenix.Kata.Angular.Services.Interfaces.IDataService" />
     public class DataService : IDataService
     {
-        public List<Booking> Initialize()
-        {
-            var  bookings = new List<Booking>();
-            using (StreamReader r = new StreamReader(HttpContext.Current.Server.MapPath("~/json/bookings.json")))
-            {
-                string json = r.ReadToEnd();
-                bookings = JsonConvert.DeserializeObject<List<Booking>>(json);
-            }
+        private static IList<Booking> bookings;
 
+        public IList<Booking> Initialize()
+        {
+            if (bookings == null)
+            {
+                using (StreamReader r = new StreamReader(HttpContext.Current.Server.MapPath("~/json/bookings.json")))
+                {
+                    string json = r.ReadToEnd();
+                    bookings = JsonConvert.DeserializeObject<List<Booking>>(json);
+                }
+            }
+          
             return bookings;
         }
     }

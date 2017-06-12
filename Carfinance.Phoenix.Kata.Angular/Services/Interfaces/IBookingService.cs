@@ -6,7 +6,7 @@ namespace Carfinance.Phoenix.Kata.Angular.Services.Interfaces
 {
     public interface IBookingService
     {
-        IEnumerable<Booking> GetAllBookings();
+        IList<Booking> GetAllBookings();
 
         Booking GetBookingById(int bookingId);
 
