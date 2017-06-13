@@ -8,10 +8,6 @@ namespace Carfinance.Phoenix.Kata.Angular.Services.Interfaces
     {
         IList<Booking> GetAllBookings();
 
-        Booking GetBookingById(int bookingId);
-
         void CreateBooking(Booking booking);
-
-        void UpdateBooking(Booking booking);
     }
 }

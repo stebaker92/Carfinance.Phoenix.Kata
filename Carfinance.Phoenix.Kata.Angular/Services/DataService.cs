@@ -9,20 +9,22 @@ namespace Carfinance.Phoenix.Kata.Angular.Services
 {
 
     /// <summary>
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// Not here.
-    /// 
-    /// 
-    /// 
+    /*
+        This is not the file you're looking for.
+
+                         .==.
+                        ()''()-.
+             .---.       ;--; /
+           .'_:___". _..'.  __'.
+           |__ --==|'-''' \'...;
+           [  ]  :[|       |---\
+           |__| I=[|     .'    '.
+           / / ____|     :       '._
+          |-/.____.'      | :       :
+         /___\ /___\      '-'._----'
+
+     */
     /// </summary>
-    /// <seealso cref="Carfinance.Phoenix.Kata.Angular.Services.Interfaces.IDataService" />
     public class DataService : IDataService
     {
         private static IList<Booking> bookings;
