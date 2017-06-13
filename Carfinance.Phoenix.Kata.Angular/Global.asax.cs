@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using Newtonsoft.Json.Serialization;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Carfinance.Phoenix.Kata.Angular
@@ -9,6 +10,12 @@ namespace Carfinance.Phoenix.Kata.Angular
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+
+            GlobalConfiguration.Configuration.Formatters
+            .JsonFormatter
+            .SerializerSettings
+            .ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }
