@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom";
+import {Loader, LoadingOverlay} from "react-overlay-loader";
 
 const config = require("../config");
 
@@ -9,6 +10,7 @@ class BookingEdit extends Component {
         super(props);
 
         this.state = {
+            loading: true,
             booking: {
                 contactName: "",
                 contactNumber: "",
@@ -18,27 +20,28 @@ class BookingEdit extends Component {
             }
         };
 
-        const queryParams = this.parseQuery(this.props.location.search);
+        const queryParams = BookingEdit.parseQuery(this.props.location.search);
 
         fetch(config.apiUrl + "booking?bookingId=" + queryParams.bookingId).then(res => {
             res.json().then(data => {
-                var d = new Date(data.bookingTime)
+                let d = new Date(data.bookingTime);
                 // react expects dates in a certain format for forms
-                data.bookingTime= `${d.getFullYear()}-${`${d.getMonth()+1}`.padStart(2,0)}-${`${d.getDate()}`.padStart(2,0)}T${`${d.getHours()}`.padStart(2,0)}:${`${d.getMinutes()}`.padStart(2, 0)}`
+                data.bookingTime = `${d.getFullYear()}-${`${d.getMonth() + 1}`.padStart(2, 0)}-${`${d.getDate()}`.padStart(2, 0)}T${`${d.getHours()}`.padStart(2, 0)}:${`${d.getMinutes()}`.padStart(2, 0)}`
 
-                this.setState({booking: data})
+                this.setState({booking: data});
+                this.setState({loading: false});
             })
-        })
+        });
 
         this.handleChangeGeneric = this.handleChangeGeneric.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
     }
 
-    parseQuery(queryString) {
-        var query = {};
-        var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
-        for (var i = 0; i < pairs.length; i++) {
-            var pair = pairs[i].split('=');
+    static parseQuery(queryString) {
+        let query = {};
+        let pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+        for (let i = 0; i < pairs.length; i++) {
+            let pair = pairs[i].split('=');
             query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
         }
         return query;
@@ -49,52 +52,56 @@ class BookingEdit extends Component {
         return (
             <div>
                 <h2>Edit booking</h2>
+                <LoadingOverlay>
+                    <Loader loading={this.state.loading}/>
 
-                <form className="offset-4 col-md-4 text-left">
-                    <div className={"form-group"}>
-                        <label>Contact Name</label>
-                        <input type="text" className="form-control" name="contactName"
-                               value={this.state.booking.contactName} onChange={this.handleNameChange}/>
-                    </div>
 
-                    <div className={"form-group"}>
-                        <label>Contact Number</label>
-                        <input type="text" className="form-control" name="contactNumber"
-                               value={this.state.booking.contactNumber}
-                               onChange={this.handleChangeGeneric}/>
-                    </div>
+                    <form className="offset-4 col-md-4 text-left">
+                        <div className={"form-group"}>
+                            <label>Contact Name</label>
+                            <input type="text" className="form-control" name="contactName"
+                                   value={this.state.booking.contactName} onChange={this.handleNameChange}/>
+                        </div>
 
-                    <div className={"form-group"}>
-                        <label>Number of People</label>
-                        <input type="text" className="form-control" name="numberOfPeople"
-                               value={this.state.booking.numberOfPeople}
-                               onChange={this.handleChangeGeneric}/>
-                    </div>
+                        <div className={"form-group"}>
+                            <label>Contact Number</label>
+                            <input type="text" className="form-control" name="contactNumber"
+                                   value={this.state.booking.contactNumber}
+                                   onChange={this.handleChangeGeneric}/>
+                        </div>
 
-                    <div className={"form-group"}>
-                        <label>Table Number</label>
-                        <input type="number" className="form-control" name="tableNumber"
-                               value={this.state.booking.tableNumber}
-                               onChange={this.handleChangeGeneric}/>
-                    </div>
+                        <div className={"form-group"}>
+                            <label>Number of People</label>
+                            <input type="text" className="form-control" name="numberOfPeople"
+                                   value={this.state.booking.numberOfPeople}
+                                   onChange={this.handleChangeGeneric}/>
+                        </div>
 
-                    <div className={"form-group"}>
-                        <label>Booking Time</label>
-                        <input type="datetime-local" className="form-control" name="bookingTime"
-                               value={this.state.booking.bookingTime}
-                               onChange={this.handleChangeGeneric}/>
-                    </div>
+                        <div className={"form-group"}>
+                            <label>Table Number</label>
+                            <input type="number" className="form-control" name="tableNumber"
+                                   value={this.state.booking.tableNumber}
+                                   onChange={this.handleChangeGeneric}/>
+                        </div>
 
-                    <button className="btn btn-default">
-                        <Link to="/bookings">Back</Link>
-                    </button>
+                        <div className={"form-group"}>
+                            <label>Booking Time</label>
+                            <input type="datetime-local" className="form-control" name="bookingTime"
+                                   value={this.state.booking.bookingTime}
+                                   onChange={this.handleChangeGeneric}/>
+                        </div>
 
-                    <input className={"btn btn-primary"} type="button" value="Submit"
-                           onClick={() => this.saveBooking()}/>
+                        <button className="btn btn-default">
+                            <Link to="/bookings">Back</Link>
+                        </button>
 
-                    <div className="text text-danger">{this.state.response}</div>
+                        <input className={"btn btn-primary"} type="button" value="Submit"
+                               onClick={() => this.saveBooking()}/>
 
-                </form>
+                        <div className="text text-danger">{this.state.response}</div>
+
+                    </form>
+                </LoadingOverlay>
             </div>
         )
     };

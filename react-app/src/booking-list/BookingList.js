@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import BookingActions from "../booking-actions/BookingActions";
+import {Loader, LoadingOverlay} from "react-overlay-loader";
 
 const config = require("../config");
 
@@ -9,8 +10,8 @@ class BookingList extends Component {
         super();
 
         this.state = {
+            loading: true,
             reservations: []
-
         };
 
         fetch(config.apiUrl + "booking").then(res => {
@@ -20,10 +21,11 @@ class BookingList extends Component {
                     return new Date(a.bookingTime) - new Date(b.bookingTime)
                 });
                 data = data.map(b => {
-                    b.bookingTime = new Date(b.bookingTime)
+                    b.bookingTime = new Date(b.bookingTime);
                     return b;
-                })
-                this.setState({reservations: data})
+                });
+                this.setState({reservations: data});
+                this.setState({loading: false})
             })
         })
     }
@@ -40,7 +42,9 @@ class BookingList extends Component {
         return (
             <div>
                 <h2>Bookings</h2>
+
                 <BookingActions/>
+
                 <table className={"table table-striped"}>
                     <thead>
                     <tr>
@@ -51,6 +55,7 @@ class BookingList extends Component {
                         <th>Booking Time</th>
                     </tr>
                     </thead>
+
                     <tbody>
                     {this.state.reservations.map((r) => {
                         return <tr key={r.bookingId}
@@ -65,6 +70,11 @@ class BookingList extends Component {
                     })}
                     </tbody>
                 </table>
+
+                <LoadingOverlay style={{marginTop: "50px", position: "absolute"}}>
+                    <Loader loading={this.state.loading}/>
+                </LoadingOverlay>
+
             </div>
         )
     };

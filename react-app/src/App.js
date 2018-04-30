@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import 'react-overlay-loader/styles.css';
 
 import BookingList from "./booking-list/BookingList"
 import BookingAdd from "./booking-add/BookingAdd"
