@@ -18,9 +18,21 @@ class BookingList extends Component {
                 data = data.sort((a, b) => {
                     return new Date(a.bookingTime) - new Date(b.bookingTime)
                 });
+                data = data.map(b => {
+                    b.bookingTime = new Date(b.bookingTime)
+                    return b;
+                })
                 this.setState({reservations: data})
             })
         })
+    }
+
+    hasSingleDiner(r) {
+        return r.numberOfPeople === 1;
+    }
+
+    hasLargeParty(r) {
+        return r.numberOfPeople > 6;
     }
 
     render() {
@@ -39,12 +51,13 @@ class BookingList extends Component {
                     </thead>
                     <tbody>
                     {this.state.reservations.map((r) => {
-                        return <tr key={r.bookingId}>
+                        return <tr key={r.bookingId}
+                                   className={(this.hasLargeParty(r) ? "text-danger" : "") + (this.hasSingleDiner(r) ? "text-primary" : "")}>
                             <td>{r.contactName}</td>
                             <td>{r.contactNumber}</td>
                             <td>{r.numberOfPeople}</td>
                             <td>{r.tableNumber}</td>
-                            <td>{r.bookingTime}</td>
+                            <td>{r.bookingTime.toLocaleString()}</td>
                         </tr>
                     })}
                     </tbody>
