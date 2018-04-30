@@ -14,6 +14,10 @@ class BookingList extends Component {
 
         fetch(config.apiUrl + "booking").then(res => {
             res.json().then(data => {
+                // Sort by date
+                data = data.sort((a, b) => {
+                    return new Date(a.bookingTime) - new Date(b.bookingTime)
+                });
                 this.setState({reservations: data})
             })
         })
