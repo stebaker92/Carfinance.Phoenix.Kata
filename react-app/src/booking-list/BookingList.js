@@ -54,6 +54,7 @@ class BookingList extends Component {
                     <tbody>
                     {this.state.reservations.map((r) => {
                         return <tr key={r.bookingId}
+                                   onClick={() => this.editBooking(r.bookingId)}
                                    className={(this.hasLargeParty(r) ? "text-danger" : "") + (this.hasSingleDiner(r) ? "text-primary" : "")}>
                             <td>{r.contactName}</td>
                             <td>{r.contactNumber}</td>
@@ -67,6 +68,10 @@ class BookingList extends Component {
             </div>
         )
     };
+
+    editBooking(id) {
+        this.props.history.push("/booking-edit?bookingId=" + id);
+    }
 }
 
 export default BookingList;

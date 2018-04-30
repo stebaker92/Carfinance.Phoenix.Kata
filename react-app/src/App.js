@@ -5,6 +5,7 @@ import './App.css';
 
 import BookingList from "./booking-list/BookingList"
 import BookingAdd from "./booking-add/BookingAdd"
+import BookingEdit from "./booking-edit/BookingEdit";
 
 class App extends Component {
     render() {
@@ -15,7 +16,6 @@ class App extends Component {
                     <h1 className="App-title">Phoenix</h1>
                 </header>
                 <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
 
                 <BrowserRouter>
@@ -37,6 +37,7 @@ class App extends Component {
                         <Route exact path="/" component={BookingList}/>
                         <Route path="/bookings" component={BookingList}/>
                         <Route path="/booking-add" component={BookingAdd}/>
+                        <Route path="/booking-edit" component={BookingEdit}/>
                     </div>
                 </BrowserRouter>
 
