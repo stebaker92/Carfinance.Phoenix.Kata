@@ -19,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="item in bookings" :key="item.bookingId" v-bind:class="{ red : isRed(item), blue: isBlue(item) }">
+      <tr v-for="item in bookings" :key="item.bookingId" v-bind:class="{ red : isRed(item), blue: isBlue(item) }" v-on:click="navTo(item.bookingId)">
         <td>{{item.contactName}}</td>
         <td>{{item.contactNumber}}</td>
         <td>{{item.numberOfPeople}}</td>
@@ -57,6 +57,9 @@ export default {
           });
           this.bookings = data;
         });
+    },
+    navTo(id) {
+      this.$router.push({ path: "edit", query: { bookingId: id } });
     },
     isRed(b) {
       return b.numberOfPeople > 6;

@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 // These can be imported from other files
 import BookingList from "./components/BookingList"
 import BookingAdd from "./components/BookingAdd"
+import BookingEdit from "./components/BookingEdit"
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -20,7 +21,7 @@ import BookingAdd from "./components/BookingAdd"
 const routes = [
   { path: '/', component: BookingList },
   { path: '/add', component: BookingAdd },
-  // { path: '/bar', component: Bar }
+  { path: '/edit', component: BookingEdit },
 ]
 
 // 3. Create the router instance and pass the `routes` option
