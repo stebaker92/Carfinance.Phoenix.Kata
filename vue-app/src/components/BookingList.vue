@@ -43,6 +43,9 @@ export default {
           return response.json();
         })
         .then(data => {
+          data.sort((a,b)=>{
+            return new Date(a.bookingTime) - new Date(b.bookingTime);
+          })
           this.bookings = data;
         });
     }
