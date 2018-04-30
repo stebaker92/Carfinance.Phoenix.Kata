@@ -10,12 +10,14 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import BookingList from "./components/BookingList.vue";
+import BookingAdd from "./components/BookingAdd.vue";
 
 export default {
   name: "app",
   components: {
     HelloWorld,
-    BookingList
+    BookingList,
+    BookingAdd
   }
 };
 </script>

@@ -10,6 +10,7 @@ Vue.use(VueRouter)
 // 1. Define route components.
 // These can be imported from other files
 import BookingList from "./components/BookingList"
+import BookingAdd from "./components/BookingAdd"
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -18,6 +19,7 @@ import BookingList from "./components/BookingList"
 // We'll talk about nested routes later.
 const routes = [
   { path: '/', component: BookingList },
+  { path: '/add', component: BookingAdd },
   // { path: '/bar', component: Bar }
 ]
 

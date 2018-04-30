@@ -2,6 +2,12 @@
   <div class="hello">
     <h1>Booking List</h1>
 
+    <button class="btn btn-primary">
+      <router-link to="/add">	
+        New Booking
+      </router-link>
+      </button>
+
     <table class="table table-striped">
       <thead>
       <tr>
@@ -45,6 +51,9 @@ export default {
         .then(data => {
           data.sort((a, b) => {
             return new Date(a.bookingTime) - new Date(b.bookingTime);
+          });
+          data.map(d => {
+            d.bookingTime = new Date(d.bookingTime);
           });
           this.bookings = data;
         });
