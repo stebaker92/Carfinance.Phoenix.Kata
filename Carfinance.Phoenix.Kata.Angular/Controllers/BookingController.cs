@@ -34,5 +34,14 @@ namespace Carfinance.Phoenix.Kata.Angular.Controllers
 
             return Ok(bookings);
         }
+
+        [HttpPost]
+        [Route("")]
+        public IHttpActionResult Create(Booking booking)
+        {
+            bookingService.CreateBooking(booking);
+
+            return Ok();
+        }
     }
 }
