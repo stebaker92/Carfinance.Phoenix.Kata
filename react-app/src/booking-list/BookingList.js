@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import BookingActions from "../booking-actions/BookingActions";
 
 const config = require("../config");
 
@@ -39,6 +40,7 @@ class BookingList extends Component {
         return (
             <div>
                 <h2>Bookings</h2>
+                <BookingActions/>
                 <table className={"table table-striped"}>
                     <thead>
                     <tr>

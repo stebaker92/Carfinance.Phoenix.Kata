@@ -37,11 +37,16 @@ namespace Carfinance.Phoenix.Kata.Angular.Controllers
 
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Create(Booking booking)
+        public IHttpActionResult Create([FromBody]Booking booking)
         {
+            if(booking.ContactName == null)
+            {
+                return BadRequest("Contact Name is required");
+            }
+
             bookingService.CreateBooking(booking);
 
-            return Ok();
+            return Ok(booking);
         }
     }
 }

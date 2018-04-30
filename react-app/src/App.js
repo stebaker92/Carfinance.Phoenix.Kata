@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import {BrowserRouter, Route} from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 
 import BookingList from "./booking-list/BookingList"
+import BookingAdd from "./booking-add/BookingAdd"
 
 class App extends Component {
     render() {
@@ -15,7 +17,29 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
-                <BookingList/>
+
+                <BrowserRouter>
+                    <div>
+                        {/*<ul>*/}
+                            {/*<li>*/}
+                                {/*/!*<Link to="/">Home</Link>*!/*/}
+                            {/*</li>*/}
+                            {/*<li>*/}
+                                {/*/!*<Link to="/about">About</Link>*!/*/}
+                            {/*</li>*/}
+                            {/*<li>*/}
+                                {/*/!*<Link to="/topics">Topics</Link>*!/*/}
+                            {/*</li>*/}
+                        {/*</ul>*/}
+
+                        <hr/>
+
+                        <Route exact path="/" component={BookingList}/>
+                        <Route path="/bookings" component={BookingList}/>
+                        <Route path="/booking-add" component={BookingAdd}/>
+                    </div>
+                </BrowserRouter>
+
             </div>
         );
     }
