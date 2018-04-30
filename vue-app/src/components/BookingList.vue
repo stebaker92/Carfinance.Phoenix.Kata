@@ -13,7 +13,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="item in bookings" :key="item.bookingId">
+      <tr v-for="item in bookings" :key="item.bookingId" v-bind:class="{ red : isRed(item), blue: isBlue(item) }">
         <td>{{item.contactName}}</td>
         <td>{{item.contactNumber}}</td>
         <td>{{item.numberOfPeople}}</td>
@@ -43,11 +43,17 @@ export default {
           return response.json();
         })
         .then(data => {
-          data.sort((a,b)=>{
+          data.sort((a, b) => {
             return new Date(a.bookingTime) - new Date(b.bookingTime);
-          })
+          });
           this.bookings = data;
         });
+    },
+    isRed(b) {
+      return b.numberOfPeople > 6;
+    },
+    isBlue(b) {
+      return b.numberOfPeople === 1;
     }
   },
   mounted() {
@@ -71,5 +77,11 @@ li {
 }
 a {
   color: #42b983;
+}
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
 }
 </style>
