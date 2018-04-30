@@ -4,8 +4,8 @@ const config = require("../config");
 
 class BookingAdd extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             booking: {}
@@ -74,6 +74,7 @@ class BookingAdd extends Component {
         }).then(res => {
             if (res.status === 200) {
                 console.log("success")
+                this.props.history.push("/bookings")
             } else {
                 res.json().then(text => {
                     this.setState({response: "An error occurred: " + text.message})
