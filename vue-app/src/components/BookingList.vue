@@ -24,7 +24,7 @@
         <td>{{item.contactNumber}}</td>
         <td>{{item.numberOfPeople}}</td>
         <td>{{item.tableNumber}}</td>
-        <td>{{item.bookingTime}}</td>
+        <td>{{item.bookingTime.toLocaleString()}}</td>
       </tr>
       </tbody>
     </table>
