@@ -1,2 +1,2 @@
-# Carfinance.Phoenix.Kata
-Carfinance.Phoenix.Kata
+# Phoenix.Kata
+Car
