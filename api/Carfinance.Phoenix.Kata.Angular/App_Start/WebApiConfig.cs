@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Carfinance.Phoenix.Kata.Angular
 {
@@ -10,6 +11,10 @@ namespace Carfinance.Phoenix.Kata.Angular
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(corsAttr);
+
         }
     }
 }
