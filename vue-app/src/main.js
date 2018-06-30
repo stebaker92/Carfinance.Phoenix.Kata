@@ -36,3 +36,15 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+
+Vue.filter('upper', function (value) {
+  if (value === null || value === undefined)
+    return value;
+    
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  return value.toLocaleUpperCase();
+});

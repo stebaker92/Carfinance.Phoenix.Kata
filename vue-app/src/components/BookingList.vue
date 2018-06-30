@@ -20,7 +20,7 @@
       </thead>
       <tbody>
       <tr v-for="item in bookings" :key="item.bookingId" v-bind:class="{ red : isRed(item), blue: isBlue(item) }" v-on:click="navTo(item.bookingId)">
-        <td>{{item.contactName}}</td>
+        <td>{{item.contactName | upper}}</td>
         <td>{{item.contactNumber}}</td>
         <td>{{item.numberOfPeople}}</td>
         <td>{{item.tableNumber}}</td>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+var useMocks = true;
+
 export default {
   name: "BookingList",
   props: {
@@ -44,6 +46,20 @@ export default {
   },
   methods: {
     getData() {
+      if (useMocks) {
+        this.bookings = [
+          {
+            contactName: "Test test",
+            bookingTime: new Date()
+          },
+          {
+            // contactName: undefined,
+            bookingTime: new Date()
+          }
+        ];
+        return;
+      }
+
       fetch("http://localhost:52363/booking")
         .then(response => {
           return response.json();
