@@ -1,6 +1,6 @@
-# Phoenix.Kata
+# Table Booking Kata
 
-A prototype application for a table booking system.
+A prototype application / kata for a table booking system.
 
 The API is written in node.js
 
